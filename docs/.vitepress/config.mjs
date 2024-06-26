@@ -1,29 +1,35 @@
 import { defineConfig } from 'vitepress'
+import { BASE_PATH } from './common'
+import { themeEnConfig } from './langs/en'
+import { themeCnConfig } from './langs/cn'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/note/',
   title: "bookroom",
   description: "raochenghui's book room",
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
+  locales: {
+    // root: { label: '简体中文', lang: 'zh-CN' },
+    // en: {
+    //   label: 'English',
+    //   lang: 'en',
+    //   themeConfig: themeEnConfig,
+    // },
+    root: {
+      label: 'English', lang: 'en',
+    },
+    cn: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      themeConfig: themeCnConfig
+    },
+  },
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+  // markdwon相关配置
+  lastUpdated: true,
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
+  head: [
+    ['link', { rel: 'icon', href: `${BASE_PATH}favicon.ico` }],
+  ],
+  themeConfig: themeEnConfig
+
 })
